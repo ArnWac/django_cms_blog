@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block form %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for hidden in form.hidden_fields %}
+      <input type="hidden" name="{{ hidden.name }}" value="{{ hidden.value }}">
+    {% endfor %}
+    {% for field in form.visible_fields %}
+      {{ field }}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary full-width">Submit</button>
+  </form>
+{% endblock %}
