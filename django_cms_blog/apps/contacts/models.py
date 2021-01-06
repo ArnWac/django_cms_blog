@@ -6,6 +6,8 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from cms.models import CMSPlugin
+
 class Contact(models.Model):
     #
     # Everything in this section should be optional, fields are to be
@@ -132,3 +134,11 @@ class Contact(models.Model):
 
     def __unicode__(self):
         return '%s (%s)' % (self.name, str(self.contact_date),)
+
+class ContactPluginModel(CMSPlugin):
+
+    title = models.CharField(u'title',
+        blank=True,
+        help_text=u'Optional. Title of the widget.',
+        max_length=64,
+    )

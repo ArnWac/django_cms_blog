@@ -66,11 +66,20 @@ class ContactForm(ContactBaseForm):
     class Meta:
         model = Contact
         fields = [
-            'name', 'company', 'email', 'verify_email', 'phone',
+            'name', 'company', 'email', 'verify_email', 'telephone',
             'comments', 'referer',
         ]
         widgets = {
             'referer': forms.HiddenInput(),
         }
 
-    required_fields = ['name', 'email', 'verify_email',]
+    required_fields = ['name', 'email', 'verify_email', ]
+
+
+class ContactAjaxForm(ContactBaseForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'verify_email', 'telephone', 'referer', ]
+        widgets = { 'referer': forms.HiddenInput(), }
+
+    required_fields = ['email', 'verify_email', ]
